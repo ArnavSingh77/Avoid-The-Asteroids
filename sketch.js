@@ -135,19 +135,15 @@ function setup() {
 
 function draw() {
   
-  textSize(30);
-  text("DEATHS: " + death, windowWidth - 250, windowHeight - 400);
-
   ///creating edges
   edges = createEdgeSprites();
 
   if (gameState === LOGO) {
 
     soundTrack.play();
-
-    //sound2.play();
-    //sound3.play();
+    
     background(260);
+    
     rocket.visible = false;
     if (keyDown("space")) {
       gameState = PLAY;
@@ -157,23 +153,36 @@ function draw() {
   if (gameState === PLAY) {
 
     rocket.collide(edges);
+    
     gameOver.visible = false;
     restart.visible = false;
     opener.visible = false;
+    
     soundTrack.play();
+    
     background(20);
+    
     textSize(30);
-    text("Score: " + score, windowWidth - 250, windowHeight - 350);
+    text("Score: " + score, windowWidth - 250, 110);
     score = score + Math.round(frameCount / 180);
+    
     rocket.visible = true;
+    
     if (keyDown("LEFT_ARROW")) {
+      
       rocket.x = rocket.x - 34;
+      
     }
+    
     if (keyDown("RIGHT_ARROW")) {
+      
       rocket.x = rocket.x + 34;
+      
     }
+    
     asteroidShower();
     rocketVelocity();
+    
     rocket.setCollider("circle", 0, 0, 150);
 
 
@@ -214,6 +223,9 @@ function draw() {
 
     rocket.x = windowWidth - 900;
     rocket.y = windowHeight / 2;
+    
+      textSize(30);
+  text("DEATHS: " + death, windowWidth - 250, 70);
 
     if (mousePressedOver(restart)) {
 
@@ -295,6 +307,8 @@ function rocketVelocity() {
     galaxy2.scale = 0.4;
     galaxy2.velocityY = 15;
     galaxy2Group.add(galaxy2);
+    galaxy2Group.depth = 1;
+    
   }
 
   if (frameCount % 159 === 0) {
